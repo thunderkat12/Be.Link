@@ -12,19 +12,6 @@ import {
 export default function HomePage() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [activeFilter, setActiveFilter] = useState("all");
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   const portfolioImages = {
     socialMedia: [
@@ -133,21 +120,6 @@ export default function HomePage() {
 
   return (
     <div className="bg-black text-white overflow-x-hidden relative">
-      {/* Mouse Follower Effect - Only the ball */}
-      <motion.div
-        className="fixed w-6 h-6 bg-[#A3E635] rounded-full pointer-events-none z-50"
-        animate={{
-          x: mousePosition.x - 12,
-          y: mousePosition.y - 12,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 500,
-          damping: 28,
-          mass: 0.5
-        }}
-      />
-
       {/* Hero Section - Cover Image */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <motion.div
@@ -234,13 +206,11 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-[#A3E635]/10 to-black/40 backdrop-blur-md rounded-3xl -z-10 shadow-2xl border border-[#A3E635]/20"></div>
                 
                 <motion.h1 
-                  className="text-7xl md:text-9xl font-black glow-text leading-none mb-8 relative z-10 cursor-pointer"
+                  className="text-7xl md:text-9xl font-black leading-none mb-8 relative z-10 cursor-pointer"
                   whileHover={{ 
                     scale: 1.05,
                     rotateX: 5,
-                    rotateY: 5,
-                    textShadow: "0 0 20px rgba(163, 230, 53, 0.6), 0 0 40px rgba(163, 230, 53, 0.3)",
-                    filter: "drop-shadow(0 5px 15px rgba(163, 230, 53, 0.2))"
+                    rotateY: 5
                   }}
                   transition={{ 
                     type: "spring", 
@@ -304,6 +274,11 @@ export default function HomePage() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
+              whileHover={{ 
+                rotateY: 8,
+                scale: 1.02
+              }}
+              style={{ transformStyle: "preserve-3d" }}
             >
               <img
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/9b8ec2d2d_2.png"
@@ -331,9 +306,15 @@ export default function HomePage() {
                   { num: "08", title: "SERVIÇOS" },
                   { num: "08", title: "CONTATO" }
                 ].map((item, index) => (
-                  <div
+                  <motion.div
                     key={index}
                     className="flex items-center justify-between p-4 border-b border-[#A3E635] border-opacity-20 hover:border-opacity-100 transition-all cursor-pointer group"
+                    whileHover={{ 
+                      rotateX: 5,
+                      scale: 1.02,
+                      x: 10
+                    }}
+                    transition={{ type: "spring", stiffness: 300 }}
                   >
                     <div className="flex items-center gap-6">
                       <span className="text-2xl font-bold text-gray-500 group-hover:text-[#A3E635] transition-colors">
@@ -342,7 +323,7 @@ export default function HomePage() {
                       <span className="text-xl font-semibold">{item.title}</span>
                     </div>
                     <ArrowRight className="w-6 h-6 text-[#A3E635] opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -359,6 +340,11 @@ export default function HomePage() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
+              whileHover={{ 
+                rotateY: -8,
+                scale: 1.02
+              }}
+              style={{ transformStyle: "preserve-3d" }}
             >
               <img
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/c76917c6a_26.png"
@@ -546,6 +532,13 @@ export default function HomePage() {
                   transition={{ duration: 0.5 }}
                   className="group cursor-pointer"
                   onClick={() => setSelectedImage(image)}
+                  whileHover={{ 
+                    rotateY: 15,
+                    rotateX: 5,
+                    scale: 1.05,
+                    z: 50
+                  }}
+                  style={{ transformStyle: "preserve-3d" }}
                 >
                   <div className="relative overflow-hidden rounded-2xl aspect-square">
                     <img
@@ -670,29 +663,43 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto"
           >
-            <a
+            <motion.a
               href="https://wa.me/5561992705546"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-6 p-8 rounded-2xl border border-[#A3E635] border-opacity-20 hover:border-opacity-100 transition-all hover:bg-[#A3E635] hover:bg-opacity-5"
+              whileHover={{ 
+                rotateY: 10,
+                rotateX: 5,
+                scale: 1.05
+              }}
+              style={{ transformStyle: "preserve-3d" }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
               <Phone className="w-12 h-12 text-[#A3E635]" />
               <div>
                 <p className="text-sm text-gray-400 mb-2">WhatsApp</p>
                 <p className="text-2xl font-bold">+55 61 9927-0546</p>
               </div>
-            </a>
+            </motion.a>
 
-            <a
+            <motion.a
               href="mailto:belinkcreative@gmail.com"
               className="flex items-center gap-6 p-8 rounded-2xl border border-[#A3E635] border-opacity-20 hover:border-opacity-100 transition-all hover:bg-[#A3E635] hover:bg-opacity-5"
+              whileHover={{ 
+                rotateY: -10,
+                rotateX: 5,
+                scale: 1.05
+              }}
+              style={{ transformStyle: "preserve-3d" }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
               <Mail className="w-12 h-12 text-[#A3E635]" />
               <div>
                 <p className="text-sm text-gray-400 mb-2">Email</p>
                 <p className="text-2xl font-bold">belinkcreative@gmail.com</p>
               </div>
-            </a>
+            </motion.a>
           </motion.div>
 
           <motion.div
