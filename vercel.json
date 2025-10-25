@@ -46,11 +46,7 @@
       "destination": "/index.html"
     }
   ],
-  "functions": {
-    "app/api/**/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
+
   "regions": ["iad1"],
   "github": {
     "autoAlias": false
