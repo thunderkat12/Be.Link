@@ -1,53 +1,111 @@
-name: Deploy to GitHub Pages
+name: CI/CD Pipeline - Vercel Deploy
 
-# Quando executar: sempre que fizer push na branch main
+# Triggers para execução
 on:
   push:
+    branches: [ main, develop ]
+  pull_request:
     branches: [ main ]
-  workflow_dispatch: # Permite executar manualmente
+  workflow_dispatch:
 
 # Permissões necessárias
 permissions:
   contents: read
-  pages: write
-  id-token: write
+  deployments: write
+  statuses: write
+  pull-requests: write
 
-# Configurações
+# Configurações de concorrência
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  # Job 1: Build do projeto
-  build:
+  # Job 1: Testes e Validações
+  test:
+    name: Tests & Quality Checks
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout do código
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
+      - name: Checkout código
+        uses: actions/checkout@v4
         
-    - name: Instalar dependências
-      run: npm ci
-      
-    - name: Build do projeto
-      run: npm run build
-      
-    - name: Setup Pages
-      uses: actions/configure-pages@v4
-      
-    - name: Upload dos arquivos
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: './dist'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Instalar dependências
+        run: npm ci
+        
+      - name: Executar linting
+        run: npm run lint
+        continue-on-error: true
+        
+      - name: Build do projeto
+        run: npm run build
+        
+      - name: Verificar tamanho do bundle
+        run: |
+          echo "📦 Tamanho dos arquivos gerados:"
+          du -sh dist/
+          ls -la dist/assets/
 
-  # Job 2: Deploy para GitHub Pages
-  deploy:
+  # Job 2: Deploy Preview (PRs)
+  preview-deploy:
+    name: Preview Deploy
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    needs: test
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+        
+      - name: Deploy Preview na Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./
+
+  # Job 3: Deploy Produção
+  production-deploy:
+    name: Production Deploy
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: test
     environment:
+      name: production
+      url: ${{ steps.deploy.outputs.preview-url }}
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+        
+      - name: Deploy Produção na Vercel
+        id: deploy
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+          working-directory: ./
+          
+      - name: Comentar URL de deploy
+        uses: actions/github-script@v7
+        if: github.event_name == 'push'
+        with:
+          script: |
+            github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.sha,
+              state: 'success',
+              target_url: '${{ steps.deploy.outputs.preview-url }}',
+              description: 'Deploy realizado com sucesso',
+              context: 'vercel/deployment'
+            })
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
