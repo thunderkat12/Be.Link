@@ -17,94 +17,94 @@ export default function HomePage() {
     socialMedia: [
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/e88342bdd_4.png",
-        title: "@garota.marketing",
+        title: "",
         category: "Social Media"
       },
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/bfaf24abf_5.png",
-        title: "CPMH",
+        title: "",
         category: "Social Media"
       },
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/fc79d2aca_6.png",
-        title: "HeroMax",
+        title: "",
         category: "Social Media"
       },
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/6f18e3365_7.png",
-        title: "Matheus Duarte",
+        title: "",
         category: "Social Media"
       },
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/612900c99_8.png",
-        title: "AssimFlor",
+        title: "",
         category: "Social Media"
       },
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/45a8ae2f3_9.png",
-        title: "Tuli Ariel",
+        title: "",
         category: "Social Media"
       },
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/a13acce9e_10.png",
-        title: "Agro Agenda",
+        title: "",
         category: "Social Media"
       },
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/d46b36dac_11.png",
-        title: "Ei Nativa",
+        title: "",
         category: "Social Media"
       },
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/963e178f6_12.png",
-        title: "The Farm News",
+        title: "",
         category: "Social Media"
       }
     ],
     branding: [
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/517c0e49e_13.png",
-        title: "Tresoré - Chocolat Artisanal",
+        title: "",
         category: "Branding"
       },
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/4ca34c1e1_14.png",
-        title: "La Verité - Bakery",
+        title: "",
         category: "Branding"
       },
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/ed2f7311d_15.png",
-        title: "Karen Store",
+        title: "",
         category: "Branding"
       },
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/2c629adfb_16.png",
-        title: "Studio Emunah",
+        title: "",
         category: "Branding"
       },
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/af6cc3d3e_17.png",
-        title: "Chef Paulo Tarso",
+        title: "",
         category: "Branding"
       },
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/9c2008bf1_18.png",
-        title: "Ei Nativa Brand",
+        title: "",
         category: "Branding"
       },
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/20d7de488_19.png",
-        title: "Boo Boo Kids",
+        title: "",
         category: "Branding"
       },
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/2a877ab16_20.png",
-        title: "bpe. Digital",
+        title: "",
         category: "Branding"
       },
       {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/8dfffe72f_21.png",
-        title: "AssimFlor Instituto",
+        title: "",
         category: "Branding"
       }
     ]
