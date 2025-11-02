@@ -121,7 +121,7 @@ export default function HomePage() {
   return (
     <div className="bg-black text-white overflow-x-hidden relative">
       {/* Hero Section - Cover Image */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -266,7 +266,7 @@ export default function HomePage() {
       </section>
 
       {/* Content Section */}
-      <section className="py-20 px-6 relative bg-black">
+      <section id="content" className="py-20 px-6 relative bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -299,15 +299,16 @@ export default function HomePage() {
 
               <div className="space-y-4">
                 {[
-                  { num: "03", title: "SOBRE NÓS" },
-                  { num: "04", title: "VISÃO & MISSÃO" },
-                  { num: "05", title: "TRABALHOS" },
-                  { num: "06", title: "MARCAS" },
-                  { num: "08", title: "SERVIÇOS" },
-                  { num: "08", title: "CONTATO" }
+                  { num: "03", title: "SOBRE NÓS", id: "sobre-nos" },
+                  { num: "04", title: "VISÃO & MISSÃO", id: "visao-missao" },
+                  { num: "05", title: "TRABALHOS", id: "trabalhos" },
+                  { num: "06", title: "MARCAS", id: "marcas" },
+                  { num: "08", title: "SERVIÇOS", id: "servicos" },
+                  { num: "08", title: "CONTATO", id: "contato" }
                 ].map((item, index) => (
-                  <motion.div
+                  <motion.a
                     key={index}
+                    href={`#${item.id}`}
                     className="flex items-center justify-between p-4 border-b border-[#A3E635] border-opacity-20 hover:border-opacity-100 transition-all cursor-pointer group"
                     whileHover={{ 
                       rotateX: 5,
@@ -323,7 +324,7 @@ export default function HomePage() {
                       <span className="text-xl font-semibold">{item.title}</span>
                     </div>
                     <ArrowRight className="w-6 h-6 text-[#A3E635] opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </motion.div>
+                  </motion.a>
                 ))}
               </div>
             </motion.div>
@@ -332,7 +333,7 @@ export default function HomePage() {
       </section>
 
       {/* Sobre Nós */}
-      <section className="py-32 px-6 bg-black">
+      <section id="sobre-nos" className="py-32 px-6 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -375,7 +376,7 @@ export default function HomePage() {
       </section>
 
       {/* Visão & Missão */}
-      <section className="py-32 px-6 bg-gradient-to-b from-black to-gray-900">
+      <section id="visao-missao" className="py-32 px-6 bg-gradient-to-b from-black to-gray-900">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
             <motion.div
@@ -442,7 +443,7 @@ export default function HomePage() {
       </section>
 
       {/* Nosso Time */}
-      <section className="py-32 px-6 bg-gradient-to-br from-[#A3E635] to-[#84cc16]">
+      <section id="nosso-time" className="py-32 px-6 bg-gradient-to-br from-[#A3E635] to-[#84cc16]">
         <div className="max-w-7xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -466,7 +467,7 @@ export default function HomePage() {
       </section>
 
       {/* Portfolio Highlights Title */}
-      <section className="py-32 px-6 bg-black">
+      <section id="trabalhos" className="py-32 px-6 bg-black">
         <div className="max-w-7xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -579,7 +580,7 @@ export default function HomePage() {
       </section>
 
       {/* Marcas */}
-      <section className="py-32 px-6 bg-black">
+      <section id="marcas" className="py-32 px-6 bg-black">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -612,7 +613,7 @@ export default function HomePage() {
       </section>
 
       {/* Serviços */}
-      <section className="py-32 px-6 bg-gradient-to-b from-gray-900 to-black">
+      <section id="servicos" className="py-32 px-6 bg-gradient-to-b from-gray-900 to-black">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -631,7 +632,7 @@ export default function HomePage() {
       </section>
 
       {/* Contato */}
-      <section className="py-32 px-6 bg-black relative overflow-hidden">
+      <section id="contato" className="py-32 px-6 bg-black relative overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68ee6c43da0b9a5f4dd21d74/7a42a6983_23.png"
